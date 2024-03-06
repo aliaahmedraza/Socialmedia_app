@@ -15,21 +15,19 @@ const userFollowController = {
             res.status(404).json({ message: "Internal Server Error" });
         }
     }
-    // ,    getFollow: async (req, res) => {
-    //     try {
-    //         const params = req.params;
-    //         const user = await userModel.findByPk(params.id, {
-    //             include: ["followings", "followers"],
-    //           });
-    //           console.log(user);
-    //         res.json({user,
-    //             message: "Followed",
-    //         });
-    //     } catch (error) {
-    //         console.error("Error while creating user:", error);
-    //         res.status(404).json({ message: "Internal Server Error" });
-    //     }
-    // }
+    ,    getFollow: async (req, res) => {
+        try {
+            const params = req.params;
+            const user = await userModel.findByPk(params.id, {
+                include: ["following", "follower"],
+              });
+              console.log(user);
+            res.json({user});
+        } catch (error) {
+            console.error("Error while creating user:", error);
+            res.status(404).json({ message: "Internal Server Error" });
+        }
+    }
 };
 
 export default userFollowController;

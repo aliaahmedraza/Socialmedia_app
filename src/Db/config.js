@@ -1,7 +1,10 @@
+import "dotenv/config";
 import Sequelize  from 'sequelize';
-const sequelize = new Sequelize('Social-media', 'postgres', 'ritadanto', {
-    host: 'localhost',
-    dialect:  'postgres'
+const env = process.env;
+const sequelize = new Sequelize(env.DB_NAME,env.DB_DATABASE,env.DB_PASSWORD, {
+    host: env.DB_HOST,
+    dialect:  env.DB_DIALECT,
+    logging: false
   });
   const Dbconnection =async()=>{try {
     await sequelize.authenticate();
